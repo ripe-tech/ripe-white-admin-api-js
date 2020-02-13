@@ -1,9 +1,9 @@
-import { OAuth2API, mix, load, conf } from "yonius";
+import { API as BaseAPI, mix, load, conf } from "yonius";
 import { ContextAPI } from "./context";
 
-const RIPE_WHITE_ADMIN_BASE_URL = "https://white-admin.platforme.com/api/";
+const RIPE_WHITE_ADMIN_BASE_URL = "https://white-admin.platforme.com/";
 
-export class API extends mix(OAuth2API).with(ContextAPI) {
+export class API extends mix(BaseAPI).with(ContextAPI) {
     constructor(kwargs = {}) {
         super(kwargs);
         this.baseUrl = conf("RIPE_WHITE_ADMIN_BASE_URL", RIPE_WHITE_ADMIN_BASE_URL);
