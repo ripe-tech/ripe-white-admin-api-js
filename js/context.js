@@ -8,7 +8,7 @@ export const ContextAPI = superclass =>
 
         async createContext(payload) {
             const url = this.baseUrl + "contexts";
-            const contents = await this.post(url, { dataJ : payload });
+            const contents = await this.post(url, { dataJ: payload });
             return contents;
         }
 
@@ -20,10 +20,10 @@ export const ContextAPI = superclass =>
 
         async updateContext(id, payload) {
             const url = this.baseUrl + `contexts/${id}`;
-            const contents = await this.put(url, { dataJ : payload });
+            const contents = await this.put(url, { dataJ: payload });
             return contents;
         }
-        
+
         async deleteContext(id) {
             const url = this.baseUrl + `contexts/${id}`;
             const contents = await this.delete(url);
@@ -31,4 +31,4 @@ export const ContextAPI = superclass =>
         }
     };
 
-export default AccountAPI;
+export default ContextAPI;

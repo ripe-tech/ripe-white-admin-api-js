@@ -1,10 +1,9 @@
-import { OAuth2API, mix, urlEncode, verifyMany, load, conf } from "yonius";
-import { AccountAPI } from "./context";
-import { TokenAPI } from "./token";
+import { OAuth2API, mix, load, conf } from "yonius";
+import { ContextAPI } from "./context";
 
 const RIPE_WHITE_ADMIN_BASE_URL = "https://white-admin.platforme.com/api/";
 
-export class API extends mix(OAuth2API).with(AccountAPI, TokenAPI) {
+export class API extends mix(OAuth2API).with(ContextAPI) {
     constructor(kwargs = {}) {
         super(kwargs);
         this.baseUrl = conf("RIPE_WHITE_ADMIN_BASE_URL", RIPE_WHITE_ADMIN_BASE_URL);
@@ -21,10 +20,10 @@ export class API extends mix(OAuth2API).with(AccountAPI, TokenAPI) {
         await super.build(method, url, options);
         options.headers = options.params !== undefined ? options.headers : {};
         options.kwargs = options.kwargs !== undefined ? options.kwargs : {};
-        const auth = kwargs.auth === undefined ? true : kwargs.auth;
+        const auth = options.kwargs.auth === undefined ? true : options.kwargs.auth;
         delete options.kwargs.auth;
         if (auth) {
-            options.headers["Authorization"] = `Bearer ${this.token}`;
+            options.headers.Authorization = `Bearer ${this.token}`;
         }
     }
 }
