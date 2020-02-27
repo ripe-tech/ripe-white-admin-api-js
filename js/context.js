@@ -29,6 +29,10 @@ export const ContextAPI = superclass =>
             const contents = await this.delete(url);
             return contents;
         }
+
+        getStyleUrlContext(id) {
+            return this.baseUrl + `contexts/${id}/style.css`;
+        }
     };
 
 export default ContextAPI;
