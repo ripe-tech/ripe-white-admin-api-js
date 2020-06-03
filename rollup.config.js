@@ -1,27 +1,10 @@
-import babel from "rollup-plugin-babel";
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
-import globals from "rollup-plugin-node-globals";
-import builtins from "rollup-plugin-node-builtins";
+import babel from "@rollup/plugin-babel";
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import nodePolyfills from "rollup-plugin-node-polyfills";
 import pkg from "./package.json";
 
-const fsbuiltin = function() {
-    return {
-        name: "fs",
-        resolveId: function(importee) {
-            if (importee === "fs") {
-                return importee;
-            }
-            return null;
-        },
-        load: function(id) {
-            if (id === "fs") {
-                return "export const promises = {};";
-            }
-            return null;
-        }
-    };
-};
+import { yoniusRollup } from "yonius";
 
 const nodePath = process.env.NODE_PATH
     ? process.platform === "win32"
@@ -41,7 +24,6 @@ const banner =
 export default [
     {
         input: "js/index.js",
-        external: ["node-fetch"],
         output: {
             name: "ripeWhiteAdmin",
             file: pkg.browser,
@@ -54,9 +36,8 @@ export default [
             }
         },
         plugins: [
-            globals(),
-            fsbuiltin(),
-            builtins(),
+            yoniusRollup(),
+            nodePolyfills(),
             resolve({
                 customResolveOptions: {
                     paths: nodePath
@@ -65,6 +46,7 @@ export default [
             commonjs(),
             babel({
                 babelrc: false,
+                babelHelpers: "bundled",
                 presets: ["@babel/preset-env"]
             })
         ]
