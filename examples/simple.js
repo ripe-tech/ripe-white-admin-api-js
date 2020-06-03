@@ -6,7 +6,7 @@ async function run() {
     try {
         console.info(await api.listContexts());
     } catch (err) {
-        console.error(`[ERROR] ${err.code || ""} ${err.message}`)
+        console.error(`[ERROR] ${err.code || ""} ${err.message}`);
     }
 }
 
