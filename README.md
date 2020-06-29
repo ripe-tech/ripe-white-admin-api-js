@@ -1,4 +1,4 @@
-# RIPE White Admin API (for Javascript)
+<h1><a href="https://tech.platforme.com"><img src="res/logo.svg" alt="RIPE White Admin API (for Javascript)" height="60" style="height: 60px;"></a></h1>
 
 Simple Javascript based API client for RIPE White Admin.
 
