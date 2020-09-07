@@ -1,8 +1,8 @@
 export const ContextAPI = superclass =>
     class extends superclass {
-        async listContexts() {
+        async listContexts(options) {
             const url = this.baseUrl + "contexts";
-            const contents = await this.get(url);
+            const contents = await this.get(url, options);
             return contents;
         }
 
