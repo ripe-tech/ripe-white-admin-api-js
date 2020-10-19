@@ -33,6 +33,12 @@ export const ContextAPI = superclass =>
         getStyleUrlContext(id) {
             return this.baseUrl + `contexts/${id}/style.css`;
         }
+
+        async getContextStyle(context) {
+            const url = this.baseUrl + "/contexts/build/style";
+            const contents = await this.post(url, { context: context });
+            return contents;
+        }
     };
 
 export default ContextAPI;
