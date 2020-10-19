@@ -35,8 +35,8 @@ export const ContextAPI = superclass =>
         }
 
         async getContextStyle(context) {
-            const url = this.baseUrl + "/contexts/build/style";
-            const contents = await this.post(url, { context: context });
+            const url = this.baseUrl + "contexts/build/style";
+            const contents = await this.post(url, { dataJ: context });
             return contents;
         }
     };
