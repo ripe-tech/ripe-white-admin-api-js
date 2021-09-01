@@ -1,7 +1,7 @@
 import { API as BaseAPI, mix, load, conf } from "yonius";
 import { ContextAPI } from "./context";
 
-const RIPE_WHITE_ADMIN_BASE_URL = "https://white-admin.platforme.com/";
+const RIPE_WHITE_ADMIN_BASE_URL = "https://ripe-white-admin-sbx.platforme.com/";
 
 export class API extends mix(BaseAPI).with(ContextAPI) {
     constructor(kwargs = {}) {
